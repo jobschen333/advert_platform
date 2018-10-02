@@ -14,3 +14,6 @@ public class SpringBootTemplateApplication {
 		SpringApplication.run(SpringBootTemplateApplication.class, args);
 	}
 }
+
+
+

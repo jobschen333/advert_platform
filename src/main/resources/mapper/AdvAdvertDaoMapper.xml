@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenxy.dao.AdvAdvertDao">
+
+    <select id="select" resultType="AdvAdvert" parameterType="AdvAdvert">
+        select id, title, content, url, pic, waste_token, must_click, count_click, add_time
+        FROM adv_advert
+        WHERE 1 = 1
+        <if test="title!='' and title!=null">
+            and title = #{title}
+        </if>
+    </select>
+
+</mapper>
