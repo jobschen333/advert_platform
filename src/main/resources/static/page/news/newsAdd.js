@@ -13,11 +13,10 @@ layui.use(['form','layer','layedit','laydate','upload'],function(){
     //上传缩略图
     upload.render({
         elem: '.thumbBox',
-        url: '../../json/userface.json',
-        method : "get",  //此处是为了演示之用，实际使用中请将此删除，默认用post方式提交
+        url: '/advert/upload',
+        method : "post",
         done: function(res, index, upload){
-            var num = parseInt(4*Math.random());  //生成0-4的随机数，随机显示一个头像信息
-            $('.thumbImg').attr('src',res.data[num].src);
+            $('.thumbImg').attr('src',"../../"+res.path);
             $('.thumbBox').css("background","#fff");
         }
     });
@@ -65,26 +64,21 @@ layui.use(['form','layer','layedit','laydate','upload'],function(){
         }
     })
     form.on("submit(addNews)",function(data){
-        //截取文章内容中的一部分文字放入文章摘要
-        var abstract = layedit.getText(editIndex).substring(0,50);
         //弹出loading
         var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
-        // 实际使用时的提交信息
-        // $.post("上传路径",{
-        //     newsName : $(".newsName").val(),  //文章标题
-        //     abstract : $(".abstract").val(),  //文章摘要
-        //     content : layedit.getContent(editIndex).split('<audio controls="controls" style="display: none;"></audio>')[0],  //文章内容
-        //     newsImg : $(".thumbImg").attr("src"),  //缩略图
-        //     classify : '1',    //文章分类
-        //     newsStatus : $('.newsStatus select').val(),    //发布状态
-        //     newsTime : submitTime,    //发布时间
-        //     newsTop : data.filed.newsTop == "on" ? "checked" : "",    //是否置顶
-        // },function(res){
-        //
-        // })
+         $.post("/advert/addAdvert",{
+             title : $(".title").val(),  //文章标题
+             wasteToken : $(".wasteToken").val(),  //文章摘要
+             pic : $(".thumbImg").attr("src"),  //缩略图
+             content: $(".content").val(),
+             mustClick : $(".mustClick").val(),
+             url : $(".url").val(),
+         },function(res){
+
+         })
         setTimeout(function(){
             top.layer.close(index);
-            top.layer.msg("文章添加成功！");
+            top.layer.msg("广告添加成功！");
             layer.closeAll("iframe");
             //刷新父页面
             parent.location.reload();

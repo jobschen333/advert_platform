@@ -11,4 +11,6 @@ import java.util.List;
 public interface AdvAdvertDao {
 
     List<AdvAdvert> select(AdvAdvert advAdvert);
+
+
 }

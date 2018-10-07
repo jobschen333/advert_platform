@@ -90,6 +90,10 @@ public class AdvAdvert {
 
     private Date add_time;
 
+    private int status;
+
+    private int businessId;
+
     /**
      * 排名
      */
@@ -101,5 +105,21 @@ public class AdvAdvert {
 
     public void setAdd_time(Date add_time) {
         this.add_time = add_time;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
     }
 }

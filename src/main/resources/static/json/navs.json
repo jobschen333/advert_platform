@@ -1,13 +1,13 @@
 {
 	"contentManagement": [
 		{
-			"title": "文章列表",
+			"title": "商家列表",
 			"icon": "icon-text",
 			"href": "page/news/newsList.html",
 			"spread": false
 		},
 		{
-			"title": "图片管理",
+			"title": "广告中心",
 			"icon": "&#xe634;",
 			"href": "page/img/images.html",
 			"spread": false
