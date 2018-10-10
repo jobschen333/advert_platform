@@ -1,5 +1,6 @@
 package com.chenxy.service.Impl;
 
+import com.chenxy.bean.VO.UserVO;
 import com.chenxy.service.IUserService;
 import com.chenxy.bean.UserEntity;
 import com.chenxy.dao.UserDao;
@@ -37,6 +38,16 @@ public class UserServiceImpl implements IUserService {
         userDao.addUser();
         //第二次添加会由于主键冲突抛出异常，测试回滚
         return userDao.addUser();
+    }
+
+    /**
+     * 获得user信息
+     * @param id
+     * @return
+     */
+    @Override
+    public UserVO getUser(int id) {
+        return userDao.getUser(id);
     }
 
 }

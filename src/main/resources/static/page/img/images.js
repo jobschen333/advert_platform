@@ -19,7 +19,7 @@ layui.config({
                 var maxPage = imgNums*page < data.length ? imgNums*page : data.length;
                 setTimeout(function(){
                     for(var i=imgNums*(page-1); i<maxPage; i++){
-                        imgList.push('<li><img layer-src="../../'+ data[i].src +'" src="../../'+ data[i].thumb +'" alt="'+data[i].alt+'"><div class="operate"><div class="check"><input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="'+data[i].alt+'"></div><i class="layui-icon img_del">&#xe640;</i></div></li>');
+                        imgList.push('<li><img id="'+data[i].id+'" layer-src="'+ data[i].src +'" src="../../'+ data[i].thumb +'" alt="'+data[i].alt+'"><div class="operate"><div class="check"><input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="'+data[i].alt+"  "+data[i].clickToken+"adv"+'">');
                     }
                     next(imgList.join(''), page < (data.length/imgNums));
                     form.render();
@@ -33,28 +33,31 @@ layui.config({
         $("#Images li img").height($("#Images li img").width());
     })
 
-    //多图片上传
-    upload.render({
-        elem: '.uploadNewImg',
-        url: '../../json/userface.json',
-        multiple: true,
-        before: function(obj){
-            //预读本地文件示例，不支持ie8
-            obj.preview(function(index, file, result){
-                $('#Images').prepend('<li><img layer-src="'+ result +'" src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img"><div class="operate"><div class="check"><input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="'+file.name+'"></div><i class="layui-icon img_del">&#xe640;</i></div></li>')
-                //设置图片的高度
-                $("#Images li img").height($("#Images li img").width());
-                form.render("checkbox");
-            });
-        },
-        done: function(res){
-            //上传完毕
-        }
-    });
 
     //弹出层
     $("body").on("click","#Images img",function(){
-        parent.showImg();
+        var id = $(this)[0].id;
+        $.ajax({
+            url: "/advert/clickAdvert?id="+id ,    //后台方法名称
+            type: "POST",
+            dataType: "json",
+            traditional: true,
+            success: function (data) {
+                if (data.code == 1){
+                    debugger;
+                    layer.msg(data.msg);
+                    //top.window.location.href = data.url;
+                    window.open(data.url);
+                } else {
+                    layer.msg(data.msg);
+                }
+                form.render();
+
+            },
+            error: function (msg) {
+            }
+        });
+
     })
 
     //删除单张图片

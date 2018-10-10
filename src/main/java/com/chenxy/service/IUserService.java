@@ -1,6 +1,7 @@
 package com.chenxy.service;
 
 import com.chenxy.bean.UserEntity;
+import com.chenxy.bean.VO.UserVO;
 
 import java.util.List;
 
@@ -19,4 +20,11 @@ public interface IUserService {
      * 添加数据
      */
     boolean addUser();
+
+    /**
+     * 获得userInfo
+     * @param id
+     * @return
+     */
+    UserVO getUser(int id);
 }

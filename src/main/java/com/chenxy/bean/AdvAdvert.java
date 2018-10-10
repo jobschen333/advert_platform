@@ -8,6 +8,86 @@ import java.util.Date;
  */
 public class AdvAdvert {
 
+    //主键id
+    private int id;
+    //标题
+    private String title;
+
+    private String content;
+
+    private String url;
+
+    private String pic;
+
+    private double waste_token;
+
+    private int must_click;
+
+    private int count_click;
+
+    private Date add_time;
+
+    /**
+     * 状态
+     */
+    private int status;
+
+    /**
+     * 商家id
+     */
+    private int businessId;
+
+    /**
+     * 排名
+     */
+    private int rank;
+
+    /**
+     * 单次点击的金额
+     */
+    private double clickToken;
+
+    public Date getAdd_time() {
+        return add_time;
+    }
+
+    public void setAdd_time(Date add_time) {
+        this.add_time = add_time;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+
+    public double getWaste_token() {
+        return waste_token;
+    }
+
+    public void setWaste_token(double waste_token) {
+        this.waste_token = waste_token;
+    }
+
     public int getId() {
         return id;
     }
@@ -48,13 +128,6 @@ public class AdvAdvert {
         this.pic = pic;
     }
 
-    public int getWaste_token() {
-        return waste_token;
-    }
-
-    public void setWaste_token(int waste_token) {
-        this.waste_token = waste_token;
-    }
 
     public int getMust_click() {
         return must_click;
@@ -72,54 +145,11 @@ public class AdvAdvert {
         this.count_click = count_click;
     }
 
-    private int id;
-
-    private String title;
-
-    private String content;
-
-    private String url;
-
-    private String pic;
-
-    private int waste_token;
-
-    private int must_click;
-
-    private int count_click;
-
-    private Date add_time;
-
-    private int status;
-
-    private int businessId;
-
-    /**
-     * 排名
-     */
-    private int rank;
-
-    public Date getAdd_time() {
-        return add_time;
+    public double getClickToken() {
+        return clickToken;
     }
 
-    public void setAdd_time(Date add_time) {
-        this.add_time = add_time;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getBusinessId() {
-        return businessId;
-    }
-
-    public void setBusinessId(int businessId) {
-        this.businessId = businessId;
+    public void setClickToken(double clickToken) {
+        this.clickToken = clickToken;
     }
 }

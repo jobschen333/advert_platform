@@ -3,6 +3,7 @@ package com.chenxy.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.chenxy.bean.AdvAdvert;
 import com.chenxy.service.IAdvertismentService;
+import com.chenxy.service.IBussinessService;
 import com.chenxy.util.FileUtil;
 import com.chenxy.util.JsonUtil;
 import com.github.pagehelper.PageInfo;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +28,9 @@ public class AdvertisementController {
 
     @Autowired
     private IAdvertismentService advertismentService;
+
+    @Autowired
+    private IBussinessService bussinessService;
 
     /**
      * 图片列表
@@ -85,7 +90,37 @@ public class AdvertisementController {
         String mustClick = request.getParameter("mustClick");
         String wasteToken = request.getParameter("wasteToken");
         String pic = request.getParameter("pic");
-
+        String clickTokenStr = request.getParameter("clickToken");
+        int must_click = 0;
+        AdvAdvert advAdvert = new AdvAdvert();
+        advAdvert.setTitle(title);
+        advAdvert.setAdd_time(new Date());
+        advAdvert.setContent(content);
+        if (mustClick!=null &&mustClick!=""){
+            must_click = Integer.parseInt(mustClick);
+        }
+        advAdvert.setMust_click(must_click);
+        advAdvert.setUrl(url);
+        double waste_token = 0;
+        if (wasteToken!=null &&wasteToken!=""){
+            waste_token = Double.parseDouble(wasteToken);
+        }
+        double clickToken = 0;
+        if (clickTokenStr!=null&&clickTokenStr!=""){
+            clickToken = Double.parseDouble(clickTokenStr);
+        }
+        advAdvert.setWaste_token(waste_token);
+        advAdvert.setPic(pic);
+        advAdvert.setCount_click(0);
+        advAdvert.setClickToken(clickToken);
+        boolean boo = advertismentService.insert(advAdvert);
+        if (boo == true){
+            jsonObject.put("code", 1);
+            jsonObject.put("msg", "添加广告成功!");
+        } else {
+            jsonObject.put("code", 0);
+            jsonObject.put("msg", "添加广告失败!");
+        }
         return jsonObject;
     }
 
@@ -108,7 +143,50 @@ public class AdvertisementController {
             jsonObject.put("msg", "上传图片失败!");
         }
         return jsonObject;
+    }
 
+    /**
+     * 点击广告
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "clickAdvert", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject clickAdvert(HttpServletRequest request){
+        String idStr = request.getParameter("id");
+        JSONObject jsonObject = new JSONObject();
+        int id = 0;
+        if (idStr!=null && idStr!=""){
+            id = Integer.parseInt(idStr);
+        }
+        // TODO: 2018/10/7 通过redis获取
+        int userId = 1;
+        AdvAdvert advAdvert = advertismentService.selectOne(id);
+        if (advAdvert.getStatus()!=1){
+            jsonObject.put("code", -3);
+            jsonObject.put("msg", "图片状态不对!");
+            return jsonObject;
+        }
+        int status = advertismentService.clickAdv(advAdvert);
+        if (status == -1){
+            jsonObject.put("code", -2);
+            jsonObject.put("msg", "已经超出点击范围!");
+            return jsonObject;
+        }
+
+        if (status== 1){
+            boolean boo = bussinessService.changeToken(advAdvert.getClickToken(),advAdvert.getBusinessId(),userId);
+            if (boo == false){
+                jsonObject.put("code", -1);
+                jsonObject.put("msg","点击失败!");
+                return jsonObject;
+            }
+            jsonObject.put("code", 1);
+            jsonObject.put("msg", "点击成功!");
+            jsonObject.put("url", advAdvert.getUrl());
+        }
+
+        return jsonObject;
 
     }
 

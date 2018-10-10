@@ -10,6 +10,20 @@ public class AdvBusiness {
 
     private int user_id;
 
+    private double balance;
+
+    private double freeze_count;
+
+    private int status;
+
+    private String companyName;
+
+    private String personInCharge;
+
+    private String personInChargePhone;
+
+    private String companyAddress;
+
     public int getId() {
         return id;
     }
@@ -42,10 +56,44 @@ public class AdvBusiness {
         this.freeze_count = freeze_count;
     }
 
-    private double balance;
 
-    private double freeze_count;
+    public int getStatus() {
+        return status;
+    }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
+    public String getCompanyName() {
+        return companyName;
+    }
 
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getPersonInCharge() {
+        return personInCharge;
+    }
+
+    public void setPersonInCharge(String personInCharge) {
+        this.personInCharge = personInCharge;
+    }
+
+    public String getPersonInChargePhone() {
+        return personInChargePhone;
+    }
+
+    public void setPersonInChargePhone(String personInChargePhone) {
+        this.personInChargePhone = personInChargePhone;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
 }

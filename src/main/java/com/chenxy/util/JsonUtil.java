@@ -27,9 +27,13 @@ public class JsonUtil {
         for (int i = 0;i<list.size(); i++){
             JSONObject dataJson = new JSONObject();
             dataJson.put("src", list.get(i).getPic());
-            dataJson.put("thumb", list.get(i).getUrl());
+            dataJson.put("thumb", list.get(i).getPic());
+            dataJson.put("url",list.get(i).getUrl());
             dataJson.put("alt", list.get(i).getTitle());
+            dataJson.put("businessId", list.get(i).getBusinessId());
+            dataJson.put("id",list.get(i).getId());
             dataJson.put("pid",i);
+            dataJson.put("clickToken", list.get(i).getClickToken());
             jsonArray.add(dataJson);
         }
         jsonObject.put("data", jsonArray);

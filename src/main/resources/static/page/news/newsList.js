@@ -26,7 +26,18 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
             {field: 'add_time', title: '添加时间', align:'center'},
 
             {title: '操作', width:170, templet:'#newsListBar',fixed:"right",align:"center"}
-        ]]
+        ]],
+        done: function(res, curr, count) {
+            $("[data-field = 'status']").children().each(function () {
+                if ($(this).text() == 0) {
+                    $(this).text("未审核");
+                } else if ($(this).text() == 1) {
+                    $(this).text("审核通过");
+                } else if ($(this).text() == -1) {
+                    $(this).text("审核未通过");
+                }
+            });
+        }
     });
 
     //是否置顶
@@ -61,19 +72,19 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
     //添加文章
     function addNews(edit){
         var index = layui.layer.open({
-            title : "添加文章",
+            title : "新增广告",
             type : 2,
             content : "newsAdd.html",
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
-                    body.find(".newsName").val(edit.newsName);
-                    body.find(".abstract").val(edit.abstract);
-                    body.find(".thumbImg").attr("src",edit.newsImg);
-                    body.find("#news_content").val(edit.content);
-                    body.find(".newsStatus select").val(edit.newsStatus);
-                    body.find(".openness input[name='openness'][title='"+edit.newsLook+"']").prop("checked","checked");
-                    body.find(".newsTop input[name='newsTop']").prop("checked",edit.newsTop);
+                    body.find("#id").val(edit.id);
+                    body.find(".title").val(edit.title);
+                    body.find(".content").val(edit.content);
+                    body.find(".thumbImg").attr("src",edit.pic);
+                    body.find(".url").val(edit.url);
+                    body.find(".mustClick").val(edit.must_click);
+                    body.find(".wasteToken").val(edit.waste_token);
                     form.render();
                 }
                 setTimeout(function(){
@@ -123,13 +134,13 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
         if(layEvent === 'edit'){ //编辑
             addNews(data);
         } else if(layEvent === 'del'){ //删除
-            layer.confirm('确定删除此文章？',{icon:3, title:'提示信息'},function(index){
-                // $.get("删除文章接口",{
-                //     newsId : data.newsId  //将需要删除的newsId作为参数传入
-                // },function(data){
+            layer.confirm('确定删除此？',{icon:3, title:'提示信息'},function(index){
+                 $.get("删除文章接口",{
+                     newsId : data.newsId  //将需要删除的newsId作为参数传入
+                 },function(data){
                     tableIns.reload();
                     layer.close(index);
-                // })
+                 })
             });
         } else if(layEvent === 'look'){ //预览
             layer.alert("此功能需要前台展示，实际开发中传入对应的必要参数进行文章内容页面访问")

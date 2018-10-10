@@ -73,6 +73,7 @@ layui.use(['form','layer','layedit','laydate','upload'],function(){
              content: $(".content").val(),
              mustClick : $(".mustClick").val(),
              url : $(".url").val(),
+             clickToken : $(".clickToken").val(),
          },function(res){
 
          })

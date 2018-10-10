@@ -25,4 +25,25 @@ public interface IAdvertismentService {
      * @return
      */
     PageInfo selectPage(AdvAdvert advAdvert, int page, int limit);
+
+    /**
+     * 新增
+     * @param advAdvert
+     * @return
+     */
+    boolean insert(AdvAdvert advAdvert);
+
+    /**
+     * 查找一个
+     * @param id
+     * @return
+     */
+    AdvAdvert selectOne(int id);
+
+    /**
+     * 点击广告
+     * @param advAdvert
+     * @return
+     */
+    int clickAdv(AdvAdvert advAdvert);
 }

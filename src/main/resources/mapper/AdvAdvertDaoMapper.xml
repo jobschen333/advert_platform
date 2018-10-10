@@ -3,12 +3,37 @@
 <mapper namespace="com.chenxy.dao.AdvAdvertDao">
 
     <select id="select" resultType="AdvAdvert" parameterType="AdvAdvert">
-        select id, title, content, url, pic, waste_token, must_click, count_click, add_time
+        select id, title, content, url, pic, waste_token, must_click, count_click, add_time, status, businessId,rank, clickToken
         FROM adv_advert
         WHERE 1 = 1
         <if test="title!='' and title!=null">
             and title = #{title}
         </if>
     </select>
+
+    <insert id="insert" parameterType="AdvAdvert" >
+        INSERT INTO adv_advert (title, content, url, pic, waste_token, must_click, count_click, add_time, businessId, rank, clickToken)
+        VALUES (#{title}, #{content}, #{url}, #{pic}, #{waste_token}, #{must_click}, #{count_click}, #{add_time}, #{businessId}, #{rank}
+        , #{clickToken})
+    </insert>
+
+    <select id="selectOne" resultType="AdvAdvert" >
+        select id, title, content, url, pic, waste_token, must_click, count_click, add_time, status, businessId,rank, clickToken
+        FROM adv_advert
+        WHERE
+        id = #{id}
+    </select>
+
+    <update id="addClick" >
+        UPDATE adv_advert
+        SET count_click = count_click + 1
+        WHERE id = #{id}
+    </update>
+    
+    <update id="updateStatus" >
+        UPDATE adv_advert
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

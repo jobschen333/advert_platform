@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>文章列表--layui后台管理模板 2.0</title>
+	<title>新增广告</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -45,9 +45,16 @@
 				</div>
 
 				<div class="layui-form-item">
+					<label class="layui-form-label">点击Token</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input mustClick" lay-verify="newsName" placeholder="请输入点击token">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
 					<label class="layui-form-label">花费token</label>
 					<div class="layui-input-block">
-						<input type="text" class="layui-input wasteToken" lay-verify="newsName" placeholder="请输入花费token">
+						<input type="text" class="layui-input clickToken" lay-verify="newsName" placeholder="请输入花费token">
 					</div>
 				</div>
 
@@ -62,7 +69,6 @@
 			<hr class="layui-bg-gray" />
 			<div class="layui-right">
 				<a class="layui-btn layui-btn-sm" lay-filter="addNews" lay-submit><i class="layui-icon">&#xe609;</i>发布</a>
-				<a class="layui-btn layui-btn-primary layui-btn-sm" lay-filter="look" lay-submit>预览</a>
 			</div>
 
 		</div>

@@ -1,13 +1,13 @@
-package com.chenxy.bean;
+package com.chenxy.bean.VO;
 
 import java.sql.Timestamp;
 
 /**
- *
- * 用户表
+ * 用户vo
  * @author chxy
  */
-public class AdvUser {
+
+public class UserVO {
 
     private int id;
 
@@ -31,29 +31,11 @@ public class AdvUser {
 
     private String realName;
 
-    public String getAccount() {
-        return account;
-    }
+    private double balance;
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
+    private String address;
 
-    public String getRealName() {
-        return realName;
-    }
 
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
     public int getId() {
         return id;
     }
@@ -86,7 +68,6 @@ public class AdvUser {
         this.sex = sex;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -117,5 +98,45 @@ public class AdvUser {
 
     public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
