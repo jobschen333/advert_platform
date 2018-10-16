@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
@@ -45,5 +46,46 @@ public class FileUtil {
             logger.error("创建文件失败!"+e);
         }
         return tempFile.getPath();
+    }
+
+    /**
+     * 转file
+     * @return
+     */
+    // TODO: 2018/10/10 转文件问题
+    public static File convert(MultipartFile file) {
+        File convFile = new File(file.getOriginalFilename());
+        try {
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return convFile;
+    }
+
+    /**
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    public static File transferTo(MultipartFile file) throws IOException {
+        File convFile = new File( file.getOriginalFilename());
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
+    }
+
+    private static void deleteFile(File... files) {
+        for (File file : files) {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
     }
 }

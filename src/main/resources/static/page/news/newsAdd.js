@@ -16,8 +16,12 @@ layui.use(['form','layer','layedit','laydate','upload'],function(){
         url: '/advert/upload',
         method : "post",
         done: function(res, index, upload){
-            $('.thumbImg').attr('src',"../../"+res.path);
-            $('.thumbBox').css("background","#fff");
+            if (res.code == 1){
+                $('.thumbImg').attr('src',res.path);
+                $('.thumbBox').css("background","#fff");
+                $("#imageUrl").val(res.path)
+            }
+
         }
     });
 

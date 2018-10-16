@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * SpringBoot启动类
- * @author LinkinStar
+ * @author chenxy
  */
 @SpringBootApplication
 public class SpringBootTemplateApplication {

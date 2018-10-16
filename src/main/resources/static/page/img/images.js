@@ -18,8 +18,9 @@ layui.config({
                 var imgList = [],data = res.data;
                 var maxPage = imgNums*page < data.length ? imgNums*page : data.length;
                 setTimeout(function(){
+                    debugger;
                     for(var i=imgNums*(page-1); i<maxPage; i++){
-                        imgList.push('<li><img id="'+data[i].id+'" layer-src="'+ data[i].src +'" src="../../'+ data[i].thumb +'" alt="'+data[i].alt+'"><div class="operate"><div class="check"><input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="'+data[i].alt+"  "+data[i].clickToken+"adv"+'">');
+                        imgList.push('<li><img id="'+data[i].id+'" layer-src="'+ data[i].src +'" src="'+ data[i].thumb +'" alt="'+data[i].alt+'"><div class="operate"><div class="check"><input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="'+data[i].alt+"  "+data[i].clickToken+"adv"+'">');
                     }
                     next(imgList.join(''), page < (data.length/imgNums));
                     form.render();

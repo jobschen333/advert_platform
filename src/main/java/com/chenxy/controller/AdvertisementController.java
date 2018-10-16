@@ -2,6 +2,7 @@ package com.chenxy.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.chenxy.bean.AdvAdvert;
+import com.chenxy.oss.OSSUploadFile;
 import com.chenxy.service.IAdvertismentService;
 import com.chenxy.service.IBussinessService;
 import com.chenxy.util.FileUtil;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +61,6 @@ public class AdvertisementController {
         String limitStr = request.getParameter("limit");
         AdvAdvert advAdvert = new AdvAdvert();
         advAdvert.setTitle(title);
-
         int page = 1 ;
         int limit = 10;
         if (pageStr!=""||pageStr!=null){
@@ -133,11 +134,19 @@ public class AdvertisementController {
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public JSONObject upload(HttpServletRequest request, MultipartFile file){
         JSONObject jsonObject = new JSONObject();
-        String name = FileUtil.uploadFile(file,"upload/");
-        if (name!=""||name!=null){
+        String url= "";
+        try {
+            File file2 = FileUtil.transferTo(file);
+            System.out.println(file2.length());
+            url= OSSUploadFile.uploadFile(file2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (url!=""||url!=null){
             jsonObject.put("code", 1);
             jsonObject.put("msg", "上传图片成功!");
-            jsonObject.put("path", name);
+            jsonObject.put("path", url);
         } else {
             jsonObject.put("code", 0);
             jsonObject.put("msg", "上传图片失败!");
@@ -159,7 +168,7 @@ public class AdvertisementController {
         if (idStr!=null && idStr!=""){
             id = Integer.parseInt(idStr);
         }
-        // TODO: 2018/10/7 通过redis获取
+        // TODO: 2018/10/7 通过redis获取  redis 就等同于session.  尤其早期的项目多服务必须用redis
         int userId = 1;
         AdvAdvert advAdvert = advertismentService.selectOne(id);
         if (advAdvert.getStatus()!=1){
