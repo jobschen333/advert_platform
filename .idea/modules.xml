@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/advert_platform.iml" filepath="$PROJECT_DIR$/advert_platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/advert_platform_main.iml" filepath="$PROJECT_DIR$/.idea/modules/advert_platform_main.iml" group="advert_platform" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/advert_platform_test.iml" filepath="$PROJECT_DIR$/.idea/modules/advert_platform_test.iml" group="advert_platform" />
     </modules>
   </component>
 </project>

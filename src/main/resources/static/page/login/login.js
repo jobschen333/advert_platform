@@ -11,12 +11,41 @@ layui.use(['form','layer','jquery'],function(){
 
     //登录按钮
     form.on("submit(login)",function(data){
-        $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+        var userAccount = $('#userName').val();
+        var userPassword = $('#userName').val();
+        var validateCode = $("#code").val();
+        if (userAccount =="" || userPassword ==""){
+            layer.msg("账号或者密码不能为空");
+            return false;
+        }
+        $.ajax({
+            url: "/user/login",
+            type: "POST",
+            dataType: "json",
+            data: {
+                userAccount : userAccount,
+                userPassword : userPassword,
+                validateCode : validateCode
+                }
+            ,
+            success: function (data) {
+                if (data.code == 1){
+                    window.location.href = "../../index.html";
+                } else if(data.code == 2){
+                    layer.msg("账户或者密码不正确!");
+                } else if (data.code == 3){
+                    layer.msg(data.msg);
+                }
+
+            },
+            error: function (msg) {
+            }
+        });
+
         setTimeout(function(){
-            window.location.href = "/layuicms2.0";
         },1000);
         return false;
-    })
+    });
 
     //表单输入效果
     $(".loginBody .input-item").click(function(e){
