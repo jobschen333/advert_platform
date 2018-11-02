@@ -1,9 +1,7 @@
 package com.chenxy.service;
 
-import com.chenxy.bean.UserEntity;
+import com.chenxy.bean.AdvUser;
 import com.chenxy.bean.VO.UserVO;
-
-import java.util.List;
 
 /**
  * 服务层接口
@@ -11,15 +9,6 @@ import java.util.List;
  */
 public interface IUserService {
 
-    /**
-     * 查询数据
-     */
-    List<UserEntity> listUser();
-
-    /**
-     * 添加数据
-     */
-    boolean addUser();
 
     /**
      * 获得userInfo
@@ -27,4 +16,12 @@ public interface IUserService {
      * @return
      */
     UserVO getUser(int id);
+
+    /**
+     * 通过用户名和密码查找
+     * @param userAccount
+     * @param password
+     * @return
+     */
+    AdvUser selectByUserAccountAndPassword(String userAccount, String password);
 }

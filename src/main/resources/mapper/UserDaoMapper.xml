@@ -3,11 +3,19 @@
 <mapper namespace="com.chenxy.dao.UserDao">
 
     <select id="getUser" resultType="com.chenxy.bean.VO.UserVO">
-        select us.id,us.username, us.password, us.sex, us.phone, us.email, us.sts, us.tag, us.addTime, us.account, us.realName ,
+        SELECT us.id,us.username, us.password, us.sex, us.phone, us.email, us.sts, us.tag, us.addTime, us.account, us.realName ,
          wa.balance, wa.address
         FROM adv_user us, adv_wallet wa
         WHERE us.id = wa.user_id
         AND us.id = #{id}
+    </select>
+
+    <select id="selectByUserAccountAndPassword" resultType="com.chenxy.bean.AdvUser">
+        SELECT id, username, password, sex, phone, email, sts, tag, addTime, account, realName
+        FROM adv_user
+        WHERE
+        username = #{username} AND
+        password = #{password}
     </select>
 
 </mapper>

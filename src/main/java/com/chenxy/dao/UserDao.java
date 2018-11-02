@@ -1,9 +1,8 @@
 package com.chenxy.dao;
 
-import com.chenxy.bean.UserEntity;
+import com.chenxy.bean.AdvUser;
 import com.chenxy.bean.VO.UserVO;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 数据访问层
@@ -13,21 +12,17 @@ import java.util.List;
 public interface UserDao {
 
     /**
-     * 查询数据
-     * @return 用户列表
-     */
-    List<UserEntity> listUser();
-
-    /**
-     * 添加数据
-     */
-    boolean addUser();
-
-    /**
      * 获得userInfo
      * @param id
      * @return
      */
     UserVO getUser(int id);
 
+    /**
+     * 通过用户名密码查找
+     * @param username
+     * @param password
+     * @return
+     */
+    AdvUser selectByUserAccountAndPassword(@Param("username") String username,@Param("password") String password);
 }

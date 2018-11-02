@@ -1,5 +1,6 @@
 package com.chenxy.service.Impl;
 
+import com.chenxy.bean.AdvUser;
 import com.chenxy.bean.VO.UserVO;
 import com.chenxy.service.IUserService;
 import com.chenxy.bean.UserEntity;
@@ -20,25 +21,6 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserDao userDao;
 
-    /**
-     * 查询
-     */
-    @Override
-    public List<UserEntity> listUser() {
-        //测试抛出异常 throw new ServiceException();
-        return userDao.listUser();
-    }
-
-    /**
-     * 新增数据
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean addUser() {
-        userDao.addUser();
-        //第二次添加会由于主键冲突抛出异常，测试回滚
-        return userDao.addUser();
-    }
 
     /**
      * 获得user信息
@@ -48,6 +30,17 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserVO getUser(int id) {
         return userDao.getUser(id);
+    }
+
+    /**
+     * 通过用户名和密码查找
+     * @param userAccount
+     * @param password
+     * @return
+     */
+    @Override
+    public AdvUser selectByUserAccountAndPassword(String userAccount, String password) {
+        return userDao.selectByUserAccountAndPassword(userAccount, password);
     }
 
 }

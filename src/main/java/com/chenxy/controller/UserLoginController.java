@@ -1,7 +1,11 @@
 package com.chenxy.controller;
 
+import com.chenxy.bean.AdvUser;
 import com.chenxy.bean.BO.ResultBO;
+import com.chenxy.config.ReturnCodeConfig;
 import com.chenxy.service.IUserService;
+import com.chenxy.util.MD5Util;
+import com.chenxy.util.Results;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,8 +58,17 @@ public class UserLoginController {
 
         String sessionCode = (String) request.getSession().getAttribute(VERIFY_KEY);
 
-
-        return null;
+        validateCode = validateCode.toLowerCase();
+        sessionCode = sessionCode.toLowerCase();
+        if (!validateCode.equals(sessionCode)) {
+            Results.fail(ReturnCodeConfig.ParamError, "验证码错误");
+        }
+        password = MD5Util.toMd5(password);
+        AdvUser advUser = userService.selectByUserAccountAndPassword(userAccount, password);
+        if (advUser == null ) {
+            Results.fail(ReturnCodeConfig.ParamError, "账号或者密码错误");
+        }
+        return Results.success("登录成功！");
     }
 
     @RequestMapping("defaultKaptcha")

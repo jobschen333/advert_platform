@@ -12,19 +12,19 @@ layui.use(['form','layer','jquery'],function(){
     //登录按钮
     form.on("submit(login)",function(data){
         var userAccount = $('#userName').val();
-        var userPassword = $('#userName').val();
+        var userPassword = $('#password').val();
         var validateCode = $("#code").val();
         if (userAccount =="" || userPassword ==""){
             layer.msg("账号或者密码不能为空");
             return false;
         }
         $.ajax({
-            url: "/user/login",
+            url: "/index/login",
             type: "POST",
             dataType: "json",
             data: {
                 userAccount : userAccount,
-                userPassword : userPassword,
+                password : userPassword,
                 validateCode : validateCode
                 }
             ,
