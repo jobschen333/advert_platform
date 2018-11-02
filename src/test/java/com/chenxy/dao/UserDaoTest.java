@@ -21,9 +21,4 @@ public class UserDaoTest {
     @Autowired
     private UserDao userDao;
 
-    @Test
-    public void listUser() {
-        List<UserEntity> list = userDao.listUser();
-        Assert.assertNotNull(list);
-    }
 }
