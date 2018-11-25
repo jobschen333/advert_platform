@@ -1,17 +1,17 @@
-package com.chenxy;
+package com.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * SpringBoot启动类
- * @author chenxy
+ * @author web
  */
 @SpringBootApplication
-public class SpringBootTemplateApplication {
+public class SpringBootWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootTemplateApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 }
 

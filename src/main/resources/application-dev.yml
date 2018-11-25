@@ -1,6 +1,6 @@
 # 开发环境配置
 server:
-  port: 8088
+  port: 8080
 spring:
 #userSSL=true 需要进行安全性配置
   datasource:
