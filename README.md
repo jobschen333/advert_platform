@@ -47,22 +47,6 @@ src/main/resources/mapper
 存放mybatis的sql语句xml文件
 ```
 
-#### 数据库表结构
-````sql
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for user_tab
--- ----------------------------
-DROP TABLE IF EXISTS `user_tab`;
-CREATE TABLE `user_tab` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `val` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-SET FOREIGN_KEY_CHECKS = 1;
 ````
 
 持续更新中~~~~~~~

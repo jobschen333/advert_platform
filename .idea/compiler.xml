@@ -4,6 +4,12 @@
     <bytecodeTargetLevel>
       <module name="advert_platform_main" target="1.8" />
       <module name="advert_platform_test" target="1.8" />
+      <module name="com.common_main" target="1.8" />
+      <module name="com.common_test" target="1.8" />
+      <module name="com.company_main" target="1.8" />
+      <module name="com.company_test" target="1.8" />
+      <module name="com.web_main" target="1.8" />
+      <module name="com.web_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

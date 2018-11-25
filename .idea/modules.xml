@@ -5,6 +5,14 @@
       <module fileurl="file://$PROJECT_DIR$/advert_platform.iml" filepath="$PROJECT_DIR$/advert_platform.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/advert_platform_main.iml" filepath="$PROJECT_DIR$/.idea/modules/advert_platform_main.iml" group="advert_platform" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/advert_platform_test.iml" filepath="$PROJECT_DIR$/.idea/modules/advert_platform_test.iml" group="advert_platform" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.common_main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.common_main.iml" group="com.common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.common_test.iml" group="com.common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.company.iml" filepath="$PROJECT_DIR$/.idea/modules/com.company.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.company_main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.company_main.iml" group="com.company" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.company_test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.company_test.iml" group="com.company" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.web.iml" filepath="$PROJECT_DIR$/.idea/modules/com.web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.web_main.iml" group="com.web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.web_test.iml" group="com.web" />
     </modules>
   </component>
 </project>
